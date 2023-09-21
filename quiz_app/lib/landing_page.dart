@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget{
     return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(image, width: 320,color: const Color.fromARGB(179, 241, 237, 237),),
+            Image.asset(image, width: 320,),
             const SizedBox(
               height: 48,
             ),
