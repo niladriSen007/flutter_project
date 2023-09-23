@@ -5,8 +5,8 @@ import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/result_screen.dart';
 
 const List<Color> colors = [
-  Color.fromARGB(255, 216, 10, 10),
-  Color.fromARGB(255, 152, 18, 214)
+  Color.fromARGB(255, 9, 5, 75),
+  Color.fromARGB(255, 120, 4, 173)
 ];
 
 class QuizWidget extends StatefulWidget {
@@ -22,7 +22,7 @@ class _QuizWidgetState extends State<QuizWidget> {
 
   Widget? activeScreen;
 
-  final List<String> selectedAnswers = [];
+   List<String> selectedAnswers = [];
 
 
   //Sobar first e call hoy ei init state method ta
@@ -37,9 +37,16 @@ class _QuizWidgetState extends State<QuizWidget> {
 
     if(selectedAnswers.length == questions.length){
       setState(() {
-        activeScreen = ResultScreen(selectedAnswers);
+        activeScreen = ResultScreen(selectedAnswers:selectedAnswers,againStartQuiz:againStartQuiz);
       });
     }
+  }
+
+  void againStartQuiz(){
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = LandingPage(switchScreen);
+    });
   }
 
   
