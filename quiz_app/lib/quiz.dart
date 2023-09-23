@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/landing_page.dart';
 import 'package:quiz_app/questions_screen.dart';
+import 'package:quiz_app/result_screen.dart';
 
 const List<Color> colors = [
   Color.fromARGB(255, 216, 10, 10),
@@ -20,6 +22,8 @@ class _QuizWidgetState extends State<QuizWidget> {
 
   Widget? activeScreen;
 
+  final List<String> selectedAnswers = [];
+
 
   //Sobar first e call hoy ei init state method ta
   @override
@@ -28,11 +32,24 @@ class _QuizWidgetState extends State<QuizWidget> {
     super.initState();
   }
 
+  void addUserAnswer(String answer){
+    selectedAnswers.add(answer);
+
+    if(selectedAnswers.length == questions.length){
+      setState(() {
+        activeScreen = ResultScreen(selectedAnswers);
+      });
+    }
+  }
+
+  
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionScreen();
+      activeScreen = QuestionScreen(addUserAnswer);
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
