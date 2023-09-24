@@ -13,7 +13,7 @@ class ResultScreen extends StatelessWidget {
 
   final void Function() againStartQuiz;
 
-  List<Map<String, Object>> summaryOfQuiz() {
+   List<Map<String, Object>> get summaryData {
     List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < selectedAnswers.length; i++) {
@@ -34,8 +34,8 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 //    print("Result Screen");
-    final SummaryData = summaryOfQuiz();
-    final correctNoAnsList = SummaryData.where((data) => data["correct_ans"] == data["selected_ans"]);
+    // final SummaryData = summaryOfQuiz();
+    final correctNoAnsList = summaryData.where((data) => data["correct_ans"] == data["selected_ans"]);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 48),
@@ -56,7 +56,7 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30,),
-            QuestionSummary(SummaryData),
+            QuestionSummary(summaryData),
             const SizedBox(
               height: 28,
             ),
